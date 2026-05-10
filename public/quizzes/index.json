@@ -1,0 +1,8 @@
+{
+  "description": "Faculty-published quiz bank (JSON). Edit or add files here; restart or reload the app to merge into student Take quiz and Sample quiz.",
+  "files": [
+    "quiz-cysts-review.json",
+    "quiz-tumors-review.json",
+    "quiz-clinical-pearls.json"
+  ]
+}

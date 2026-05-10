@@ -1,0 +1,51 @@
+{
+  "id": "pub-tumors-review",
+  "title": "Faculty bank — Odontogenic epithelial tumors",
+  "createdAt": "2026-05-10T14:00:00.000Z",
+  "questions": [
+    {
+      "id": "pub-tumors-review-q1",
+      "prompt": "The benign odontogenic epithelial tumor most classically linked to multilocular posterior mandible radiolucency is:",
+      "options": [
+        { "id": "pub-tumors-review-q1-a", "text": "Odontoma" },
+        { "id": "pub-tumors-review-q1-b", "text": "Ameloblastoma" },
+        { "id": "pub-tumors-review-q1-c", "text": "Central giant cell lesion" },
+        { "id": "pub-tumors-review-q1-d", "text": "Osteosarcoma of jaw" }
+      ],
+      "correctOptionId": "pub-tumors-review-q1-b"
+    },
+    {
+      "id": "pub-tumors-review-q2",
+      "prompt": "Keratocystic odontogenic tumor lining is typically described as:",
+      "options": [
+        { "id": "pub-tumors-review-q2-a", "text": "Respiratory-type pseudostratified epithelium" },
+        { "id": "pub-tumors-review-q2-b", "text": "Parakeratinized stratified squamous epithelium" },
+        { "id": "pub-tumors-review-q2-c", "text": "Non-keratinized squamous epithelium only" },
+        { "id": "pub-tumors-review-q2-d", "text": "Columnar intestinal metaplasia" }
+      ],
+      "correctOptionId": "pub-tumors-review-q2-b"
+    },
+    {
+      "id": "pub-tumors-review-q3",
+      "prompt": "Nevoid basal cell carcinoma syndrome (Gorlin syndrome) increases vigilance especially for:",
+      "options": [
+        { "id": "pub-tumors-review-q3-a", "text": "Multiple jaw keratocysts and basal cell carcinoma risk" },
+        { "id": "pub-tumors-review-q3-b", "text": "Exclusive dentigerous cyst formation" },
+        { "id": "pub-tumors-review-q3-c", "text": "Thyroid medullary carcinoma only" },
+        { "id": "pub-tumors-review-q3-d", "text": "Benign mucosal fibroma proliferation" }
+      ],
+      "correctOptionId": "pub-tumors-review-q3-a"
+    },
+    {
+      "id": "pub-tumors-review-q4",
+      "prompt": "Local invasiveness without distant metastasis is most characteristic of typical:",
+      "options": [
+        { "id": "pub-tumors-review-q4-a", "text": "Well-differentiated ameloblastoma" },
+        { "id": "pub-tumors-review-q4-b", "text": "Orthokeratinized radicular cyst" },
+        { "id": "pub-tumors-review-q4-c", "text": "Simple mucocele" },
+        { "id": "pub-tumors-review-q4-d", "text": "Periapical granuloma only" }
+      ],
+      "correctOptionId": "pub-tumors-review-q4-a"
+    }
+  ]
+}

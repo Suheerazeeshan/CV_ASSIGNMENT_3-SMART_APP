@@ -1,0 +1,40 @@
+{
+  "id": "pub-clinical-pearls",
+  "title": "Faculty bank — Clinical pearls & imaging",
+  "createdAt": "2026-05-10T14:00:00.000Z",
+  "questions": [
+    {
+      "id": "pub-clinical-pearls-q1",
+      "prompt": "Panoramic imaging showing a corticated radiolucency hugging an impacted third molar crown most strongly suggests:",
+      "options": [
+        { "id": "pub-clinical-pearls-q1-a", "text": "Radicular cyst from necrotic premolar" },
+        { "id": "pub-clinical-pearls-q1-b", "text": "Dentigerous cyst associated with the impacted crown" },
+        { "id": "pub-clinical-pearls-q1-c", "text": "Periapical cemental dysplasia at apex" },
+        { "id": "pub-clinical-pearls-q1-d", "text": "Salivary duct sialolith shadow" }
+      ],
+      "correctOptionId": "pub-clinical-pearls-q1-b"
+    },
+    {
+      "id": "pub-clinical-pearls-q2",
+      "prompt": "Vitality testing helps separate inflammatory radicular disease from many:",
+      "options": [
+        { "id": "pub-clinical-pearls-q2-a", "text": "Developmental dentigerous lesions tied to vital impacted teeth" },
+        { "id": "pub-clinical-pearls-q2-b", "text": "Acute abscesses always needing extraction" },
+        { "id": "pub-clinical-pearls-q2-c", "text": "OKC cases requiring pulp extirpation only" },
+        { "id": "pub-clinical-pearls-q2-d", "text": "Nasolabial cyst infections" }
+      ],
+      "correctOptionId": "pub-clinical-pearls-q2-a"
+    },
+    {
+      "id": "pub-clinical-pearls-q3",
+      "prompt": "Before definitive diagnosis, biopsy correlation with imaging is emphasized because:",
+      "options": [
+        { "id": "pub-clinical-pearls-q3-a", "text": "Radiographs alone always distinguish every odontogenic lesion" },
+        { "id": "pub-clinical-pearls-q3-b", "text": "Overlapping radiolucent patterns require histopathology for specificity" },
+        { "id": "pub-clinical-pearls-q3-c", "text": "MRI replaces biopsy for all jaw cysts" },
+        { "id": "pub-clinical-pearls-q3-d", "text": "Clinical exam negates need for tissue sampling" }
+      ],
+      "correctOptionId": "pub-clinical-pearls-q3-b"
+    }
+  ]
+}

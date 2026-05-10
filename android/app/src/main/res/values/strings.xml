@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Oral Pathology Edu</string>
+    <string name="title_activity_main">Oral Pathology Edu</string>
+    <string name="package_name">edu.bahria.oralpathology</string>
+    <string name="custom_url_scheme">edu.bahria.oralpathology</string>
+</resources>

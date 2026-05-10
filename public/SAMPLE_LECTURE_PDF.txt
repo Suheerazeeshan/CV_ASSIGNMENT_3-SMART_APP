@@ -1,0 +1,13 @@
+Sample PDF for faculty "Upload PDF" testing
+===========================================
+
+File: sample-odontogenic-lecture.pdf  (same folder as this file)
+
+- Open the app as Faculty → Upload PDF → choose this file.
+- It is text-based (not a scan) so the quiz generator can read it.
+- To regenerate the PDF from source, from the project root run:  npm run sample-pdf
+
+You can also open the PDF in your file explorer:
+  oral-pathology-edu\public\sample-odontogenic-lecture.pdf
+
+When the app is running, you can drag the file from the folder or use the file picker.

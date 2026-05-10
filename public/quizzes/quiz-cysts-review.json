@@ -1,0 +1,51 @@
+{
+  "id": "pub-cysts-review",
+  "title": "Faculty bank — Odontogenic cysts review",
+  "createdAt": "2026-05-10T14:00:00.000Z",
+  "questions": [
+    {
+      "id": "pub-cysts-review-q1",
+      "prompt": "Which cyst is most characteristically associated with a non-vital tooth?",
+      "options": [
+        { "id": "pub-cysts-review-q1-a", "text": "Dentigerous cyst around an impacted crown" },
+        { "id": "pub-cysts-review-q1-b", "text": "Radicular (periapical) cyst at a necrotic apex" },
+        { "id": "pub-cysts-review-q1-c", "text": "Odontogenic keratocyst without pulp disease" },
+        { "id": "pub-cysts-review-q1-d", "text": "Mucocele of minor salivary gland" }
+      ],
+      "correctOptionId": "pub-cysts-review-q1-b"
+    },
+    {
+      "id": "pub-cysts-review-q2",
+      "prompt": "A developmental cyst enveloping the crown of an unerupted tooth is best described as:",
+      "options": [
+        { "id": "pub-cysts-review-q2-a", "text": "Radicular cyst secondary to caries" },
+        { "id": "pub-cysts-review-q2-b", "text": "Residual cyst after extraction" },
+        { "id": "pub-cysts-review-q2-c", "text": "Dentigerous (follicular) cyst" },
+        { "id": "pub-cysts-review-q2-d", "text": "Primordial cyst with no tooth association" }
+      ],
+      "correctOptionId": "pub-cysts-review-q2-c"
+    },
+    {
+      "id": "pub-cysts-review-q3",
+      "prompt": "Compared with many radicular cysts, keratocystic odontogenic lesions are notable for:",
+      "options": [
+        { "id": "pub-cysts-review-q3-a", "text": "Exclusive anterior maxillary location" },
+        { "id": "pub-cysts-review-q3-b", "text": "Always resolving after pulp therapy alone" },
+        { "id": "pub-cysts-review-q3-c", "text": "Higher recurrence risk and aggressive behavior in many cases" },
+        { "id": "pub-cysts-review-q3-d", "text": "Mandatory malignant transformation" }
+      ],
+      "correctOptionId": "pub-cysts-review-q3-c"
+    },
+    {
+      "id": "pub-cysts-review-q4",
+      "prompt": "Inflammatory stimulation from a non-vital pulp most directly contributes to expansion of:",
+      "options": [
+        { "id": "pub-cysts-review-q4-a", "text": "OKC lining proliferation without inflammation" },
+        { "id": "pub-cysts-review-q4-b", "text": "Radicular cyst formation at the involved apex" },
+        { "id": "pub-cysts-review-q4-c", "text": "Dentigerous cyst around a vital impacted tooth" },
+        { "id": "pub-cysts-review-q4-d", "text": "Nasopalatine duct cyst midline maxilla" }
+      ],
+      "correctOptionId": "pub-cysts-review-q4-b"
+    }
+  ]
+}
