@@ -1,22 +1,14 @@
-tooth.glb (included)
-====================
+single_tooth.glb (included)
+============================
 
 This folder includes:
 
-  • tooth.glb — default model the app loads from “Use project default”.
-  • manual-upload-sample-tooth.glb — same mesh, copied so you can practice “Choose file”:
-      Browse to:
-        oral-pathology-edu\public\models\manual-upload-sample-tooth.glb
-      and select it in Student → 3D models.
+  • single_tooth.glb — default model loaded from “Use project default”.
+  • tooth.glb — same mesh (legacy alias).
+  • manual-upload-sample-tooth.glb — same mesh for practicing “Choose file”.
+  • demo-gallery/ — extra .glb files for live demos (not the default).
 
-Regenerate the mesh anytime:
+Replace the bundled mesh by overwriting single_tooth.glb, or use Student → 3D models → Upload or
+Demo gallery.
 
-  npm run generate-tooth-glb
-
-Script: scripts/create-tooth-glb.mjs (Three.js → GLB). Educational placeholder, not a
-clinical scan.
-
-Replace with your own mesh:
-
-  • Export from Blender / Meshmixer as .glb and overwrite tooth.glb, or
-  • Use Student → 3D models → Upload 3D model (.glb) for a browser-only preview.
+Optional generated molar: npm run generate-tooth-glb (writes tooth.glb by default).

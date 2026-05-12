@@ -3,6 +3,8 @@
   "files": [
     "quiz-cysts-review.json",
     "quiz-tumors-review.json",
-    "quiz-clinical-pearls.json"
+    "quiz-clinical-pearls.json",
+    "quiz-ar-preparation.json",
+    "quiz-histopathology-lab.json"
   ]
 }

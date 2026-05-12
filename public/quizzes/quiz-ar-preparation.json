@@ -1,0 +1,51 @@
+{
+  "id": "pub-ar-preparation",
+  "title": "Faculty bank — AR & spatial preparation",
+  "createdAt": "2026-05-12T12:00:00.000Z",
+  "questions": [
+    {
+      "id": "pub-ar-preparation-q1",
+      "prompt": "In AR-style jaw preparation labs, aligning a digital overlay with the patient view primarily trains:",
+      "options": [
+        { "id": "pub-ar-preparation-q1-a", "text": "Spatial orientation of cystic zones relative to tooth-bearing regions" },
+        { "id": "pub-ar-preparation-q1-b", "text": "Automated histopathology without tissue sampling" },
+        { "id": "pub-ar-preparation-q1-c", "text": "Definitive staging that replaces biopsy" },
+        { "id": "pub-ar-preparation-q1-d", "text": "Pharmacologic pulp therapy selection only" }
+      ],
+      "correctOptionId": "pub-ar-preparation-q1-a"
+    },
+    {
+      "id": "pub-ar-preparation-q2",
+      "prompt": "Before using AR overlays for teaching, the learner should first confirm:",
+      "options": [
+        { "id": "pub-ar-preparation-q2-a", "text": "Camera permission and stable lighting for landmark alignment" },
+        { "id": "pub-ar-preparation-q2-b", "text": "That every radiolucency is malignant" },
+        { "id": "pub-ar-preparation-q2-c", "text": "That vitality testing is never required" },
+        { "id": "pub-ar-preparation-q2-d", "text": "That panoramic films are obsolete" }
+      ],
+      "correctOptionId": "pub-ar-preparation-q2-a"
+    },
+    {
+      "id": "pub-ar-preparation-q3",
+      "prompt": "A pericoronal AR highlight around an impacted crown is most consistent with reviewing:",
+      "options": [
+        { "id": "pub-ar-preparation-q3-a", "text": "Dentigerous-type developmental cystic expansion" },
+        { "id": "pub-ar-preparation-q3-b", "text": "Radicular cyst from a non-vital anterior incisor only" },
+        { "id": "pub-ar-preparation-q3-c", "text": "Salivary duct sialolithiasis" },
+        { "id": "pub-ar-preparation-q3-d", "text": "Benign fibrous hyperplasia unrelated to tooth germs" }
+      ],
+      "correctOptionId": "pub-ar-preparation-q3-a"
+    },
+    {
+      "id": "pub-ar-preparation-q4",
+      "prompt": "AR preparation in this prototype is best described as:",
+      "options": [
+        { "id": "pub-ar-preparation-q4-a", "text": "A low-stakes spatial drill that complements reading and imaging labs" },
+        { "id": "pub-ar-preparation-q4-b", "text": "A regulated diagnostic device cleared for treatment planning" },
+        { "id": "pub-ar-preparation-q4-c", "text": "A replacement for faculty-generated MCQ banks" },
+        { "id": "pub-ar-preparation-q4-d", "text": "A substitute for microscopic slide review in every case" }
+      ],
+      "correctOptionId": "pub-ar-preparation-q4-a"
+    }
+  ]
+}
