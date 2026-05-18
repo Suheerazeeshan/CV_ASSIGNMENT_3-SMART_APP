@@ -30,7 +30,9 @@ export function FacultyQuizList() {
                   · {q.questions.length} items ·{' '}
                   {isPublishedFolderQuiz(q)
                     ? 'Faculty bank (JSON folder)'
-                    : q.sourcePdfName ?? 'PDF-generated'}
+                    : q.lectureText
+                      ? `From lecture: ${q.sourcePdfName ?? 'uploaded PDF'}`
+                      : q.sourcePdfName ?? 'PDF-generated'}
                 </span>
               </Link>
             </li>

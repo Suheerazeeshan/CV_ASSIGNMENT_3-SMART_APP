@@ -1,0 +1,18 @@
+{
+  "models": [
+    {
+      "id": "free_teeth_base_mesh",
+      "label": "Free teeth base mesh",
+      "file": "models/demo-gallery/free_teeth_base_mesh.glb",
+      "note": "From free-teeth-base-mesh.zip",
+      "importedAt": "2026-05-19T12:00:00.000Z"
+    },
+    {
+      "id": "rigged_teeth_with_gums",
+      "label": "Rigged teeth with gums",
+      "file": "models/demo-gallery/rigged_teeth_with_gums.glb",
+      "note": "From rigged-teeth-with-gums.zip",
+      "importedAt": "2026-05-19T12:00:00.000Z"
+    }
+  ]
+}

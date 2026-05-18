@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <radialGradient id="gum" cx="50%" cy="55%" r="45%">
+      <stop offset="0%" stop-color="#fda4af" />
+      <stop offset="100%" stop-color="#e11d48" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)" />
+  <text x="400" y="42" text-anchor="middle" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="16">
+    Anterior jaw reference - align with on-screen oval
+  </text>
+  <path
+    d="M140 320 Q400 120 660 320 Q400 420 140 320 Z"
+    fill="url(#gum)"
+    stroke="#fecdd3"
+    stroke-width="3"
+  />
+  <path d="M180 290 Q400 160 620 290" fill="none" stroke="#881337" stroke-width="2" opacity="0.5" />
+  <g fill="#f8fafc" stroke="#cbd5e1" stroke-width="2">
+    <rect x="210" y="210" width="36" height="52" rx="6" />
+    <rect x="252" y="198" width="36" height="58" rx="6" />
+    <rect x="294" y="188" width="36" height="64" rx="6" />
+    <rect x="336" y="182" width="36" height="68" rx="6" />
+    <rect x="378" y="180" width="36" height="70" rx="6" />
+    <rect x="420" y="182" width="36" height="68" rx="6" />
+    <rect x="462" y="188" width="36" height="64" rx="6" />
+    <rect x="504" y="198" width="36" height="58" rx="6" />
+    <rect x="546" y="210" width="36" height="52" rx="6" />
+  </g>
+  <ellipse cx="290" cy="248" rx="70" ry="48" fill="none" stroke="#38bdf8" stroke-width="3" stroke-dasharray="10 6" opacity="0.85" />
+  <ellipse cx="530" cy="268" rx="58" ry="40" fill="none" stroke="#facc15" stroke-width="3" stroke-dasharray="10 6" opacity="0.85" />
+</svg>

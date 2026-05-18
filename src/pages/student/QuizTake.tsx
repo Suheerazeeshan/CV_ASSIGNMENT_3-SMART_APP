@@ -10,6 +10,7 @@ export function QuizTake() {
 
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [showLecture, setShowLecture] = useState(true)
 
   const score = useMemo(() => {
     if (!quiz) return 0
@@ -48,13 +49,45 @@ export function QuizTake() {
     )
   }
 
+  const hasLecture = Boolean(quiz.lectureText?.trim())
+
   return (
     <div className="page">
       <p>
         <Link to="/app/student/quizzes">← Quizzes</Link>
       </p>
       <h2>{quiz.title}</h2>
-      <p className="muted">Graded attempt saves to faculty reports on this browser.</p>
+      {hasLecture ? (
+        <p className="muted">
+          This quiz was <strong>generated from the faculty lecture</strong>
+          {quiz.sourcePdfName ? ` (${quiz.sourcePdfName})` : ''}. Read the lecture below, then answer
+          the questions.
+        </p>
+      ) : (
+        <p className="muted">Graded attempt saves to faculty reports on this browser.</p>
+      )}
+
+      {hasLecture && (
+        <section className="card stack lecture-panel">
+          <div className="lecture-panel-head">
+            <h3>Lecture material</h3>
+            <button
+              type="button"
+              className="btn secondary small"
+              onClick={() => setShowLecture((v) => !v)}
+            >
+              {showLecture ? 'Hide lecture' : 'Show lecture'}
+            </button>
+          </div>
+          {showLecture && (
+            <div className="lecture-excerpt" tabIndex={0}>
+              {quiz.lectureText}
+            </div>
+          )}
+        </section>
+      )}
+
+      <h3 className="section-heading">Quiz questions</h3>
       <form className="stack" onSubmit={finish}>
         {quiz.questions.map((qn, idx) => (
           <fieldset key={qn.id} className="card" disabled={submitted}>

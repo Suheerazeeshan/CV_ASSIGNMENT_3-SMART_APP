@@ -12,11 +12,16 @@ const guideTopics = [
 export function Guide() {
   return (
     <div className="page">
-      <h2>End-user guide</h2>
-      <p className="lead">
-        Quick map of main screens in this prototype. Each topic below matches a primary workflow area—no
-        screenshot files required.
-      </p>
+      <header className="page-hero page-hero--student">
+        <div className="page-hero-content">
+          <span className="hero-badge">Getting started</span>
+          <h2>End-user guide</h2>
+          <p className="lead">
+            Quick map of main screens in this prototype. Each topic below matches a primary workflow
+            area.
+          </p>
+        </div>
+      </header>
 
       <section className="card prose">
         <h3>Faculty workflow</h3>

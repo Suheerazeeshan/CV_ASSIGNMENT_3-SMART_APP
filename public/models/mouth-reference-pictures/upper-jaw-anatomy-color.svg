@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Upper jaw anatomy color reference">
+  <rect width="640" height="400" fill="#0f172a"/>
+  <text x="320" y="36" text-anchor="middle" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="18" font-weight="600">Upper jaw (maxilla)</text>
+  <path d="M80 180 Q320 100 560 180 Q540 240 320 270 Q100 240 80 180Z" fill="#fff6ee" fill-opacity="0.38" stroke="#f1f5f9" stroke-width="1.5"/>
+  <path d="M100 195 Q320 155 540 195 Q520 215 320 225 Q120 215 100 195Z" fill="#e06b6b"/>
+  <g fill="#fffaf5">
+    <rect x="150" y="195" width="18" height="32" rx="5"/><rect x="190" y="188" width="18" height="36" rx="5"/>
+    <rect x="230" y="182" width="18" height="40" rx="5"/><rect x="270" y="178" width="20" height="44" rx="5"/>
+    <rect x="310" y="176" width="22" height="46" rx="5"/><rect x="350" y="178" width="20" height="44" rx="5"/>
+    <rect x="390" y="182" width="18" height="40" rx="5"/><rect x="430" y="188" width="18" height="36" rx="5"/>
+    <rect x="470" y="195" width="18" height="32" rx="5"/>
+  </g>
+  <path d="M120 202 Q320 182 520 202" stroke="#ffe033" stroke-width="4" fill="none"/>
+  <path d="M130 190 Q320 170 510 190" stroke="#e82222" stroke-width="3" fill="none"/>
+  <path d="M140 182 Q320 162 500 182" stroke="#2a4fd4" stroke-width="3" fill="none"/>
+  <text x="320" y="360" text-anchor="middle" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="13">Superior alveolar nerve · arteries · veins</text>
+</svg>

@@ -1,17 +1,16 @@
 import { useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { GlbViewer } from '../../components/GlbViewer'
+import { DEFAULT_JAW_GLB_URL, JAW_ANATOMY_LEGEND } from '../../data/jawModel3d'
 import { PATHOLOGY_3D_CASES } from '../../data/pathologyModels3D'
 import { TOOTH_DEMO_GALLERY_FOLDER, TOOTH_DEMO_GLB_SAMPLES } from '../../data/toothDemoGallery'
 import { publicAssetUrl } from '../../lib/publicAssetUrl'
 import { validateBinaryGlb } from '../../lib/validateGlb'
 
-const FALLBACK_GLb =
-  'https://modelviewer.dev/shared-assets/models/RobotExpressive/RobotExpressive.glb'
+const GLB_ACCEPT = '.glb,model/gltf-binary'
 
 export function Models3D() {
-  const bundledModel = useMemo(() => publicAssetUrl('models/single_tooth.glb'), [])
-  const [src, setSrc] = useState(bundledModel)
+  const [src, setSrc] = useState(DEFAULT_JAW_GLB_URL)
   const [viewerKey, setViewerKey] = useState(0)
   const [caseId, setCaseId] = useState(PATHOLOGY_3D_CASES[0].id)
   const blobUrlRef = useRef<string | null>(null)
@@ -42,7 +41,7 @@ export function Models3D() {
     setGalleryLabel(null)
   }
 
-  async function onPickFile(e: React.ChangeEvent<HTMLInputElement>) {
+  async function onPickGlb(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     if (!file) return
 
@@ -72,30 +71,31 @@ export function Models3D() {
     setViewerHint(null)
   }
 
-  function useProjectDefault() {
+  function useFullMouthDefault() {
     revokeBlob()
-    setSrc(bundledModel)
+    setGalleryLabel(null)
+    setSrc(DEFAULT_JAW_GLB_URL)
     setViewerKey((k) => k + 1)
     setViewerHint(null)
   }
 
   const isUploaded = src.startsWith('blob:')
+  const isDefaultJaw = src === DEFAULT_JAW_GLB_URL
 
   const sourceSummary = isUploaded
-    ? `Custom upload${uploadFileName ? `: ${uploadFileName}` : ''}`
+    ? `3D upload${uploadFileName ? `: ${uploadFileName}` : ''}`
     : galleryLabel
-      ? `Demo gallery: ${galleryLabel}`
-      : src === FALLBACK_GLb
-        ? 'Fallback (demo robot)'
-        : 'Bundled tooth (single_tooth.glb)'
+      ? `3D gallery: ${galleryLabel}`
+      : isDefaultJaw
+        ? '3D: Free teeth base mesh'
+        : '3D: Custom model'
 
   return (
     <div className="page">
       <h2>3D models</h2>
       <p className="muted">
-        Explore odontogenic pathology on a <strong>single tooth</strong> mesh. Pick a teaching
-        scenario to place translucent 3D overlays (cystic radiolucency, pericoronal expansion,
-        cortical breach), then orbit and zoom. Overlays are educational markers, not a diagnosis.
+        Orbit and zoom colorful dental meshes. Pick a model below, or upload your own <strong>.glb</strong>{' '}
+        file.
       </p>
 
       {viewerHint && (
@@ -146,56 +146,66 @@ export function Models3D() {
       </section>
 
       <section className="card stack">
-        <h3>Demo gallery (extra .glb files)</h3>
+        <h3>3D models (gallery)</h3>
         <p className="small muted">
-          Separate from the bundled default. Quick-load a sample below, or use <strong>Choose file</strong>{' '}
-          and browse to <code>{TOOTH_DEMO_GALLERY_FOLDER}</code> on this PC.
+          Click a name to load that mesh in the viewer below. Files live in{' '}
+          <code>{TOOTH_DEMO_GALLERY_FOLDER}</code>.
         </p>
         <div className="pathology-case-grid">
+          <button
+            type="button"
+            className={isDefaultJaw ? 'pathology-case active' : 'pathology-case'}
+            onClick={useFullMouthDefault}
+          >
+            Free teeth base (default)
+          </button>
           {demoSamples.map((sample) => (
             <button
               key={sample.id}
               type="button"
-              className="pathology-case"
+              className={
+                galleryLabel === sample.label && !isUploaded ? 'pathology-case active' : 'pathology-case'
+              }
               onClick={() => loadDemoSample(sample.url, sample.label)}
             >
               {sample.label}
             </button>
           ))}
         </div>
-        <ul className="pathology-legend">
-          {demoSamples.map((sample) => (
-            <li key={`${sample.id}-note`}>
-              <strong>{sample.label}:</strong> {sample.note}
-            </li>
-          ))}
-        </ul>
       </section>
 
       <div className="card stack">
         <label className="field">
           <span>Upload 3D model (.glb) — optional</span>
-          <input type="file" accept=".glb,model/gltf-binary" onChange={onPickFile} />
+          <input type="file" accept={GLB_ACCEPT} onChange={onPickGlb} />
         </label>
         <div className="row-actions">
-          <button type="button" className="btn primary" onClick={useProjectDefault}>
-            Use project default (single tooth)
+          <button type="button" className="btn primary" onClick={useFullMouthDefault}>
+            Reset to default teeth model
           </button>
-          {isUploaded && (
-            <span className="small muted">
-              Upload active — use the button above for the bundled single tooth model.
-            </span>
-          )}
         </div>
         <p className="small muted">
-          <strong>Viewer source:</strong> {sourceSummary}
-        </p>
-        <p className="small muted">
-          URL: <code style={{ wordBreak: 'break-all' }}>{src}</code>
+          <strong>3D source:</strong> {sourceSummary}
         </p>
       </div>
 
-      <div className="card glb-viewer-card">
+      <section className="card stack">
+        <h3>Anatomy colors</h3>
+        <ul className="pathology-legend">
+          {JAW_ANATOMY_LEGEND.map((item) => (
+            <li key={item.label}>
+              <span className="pathology-swatch" style={{ background: item.color }} aria-hidden />
+              {item.label}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <div className="card glb-viewer-card glb-viewer-card--interactive">
+        <p className="glb-viewer-hint small muted">
+          <strong>Drag</strong> to move left/right · <strong>Right-drag</strong> to rotate ·{' '}
+          <strong>Scroll</strong> to zoom
+        </p>
         <GlbViewer
           key={`${viewerKey}-${caseId}-${src}`}
           url={src}
@@ -204,19 +214,17 @@ export function Models3D() {
           onError={(msg) => {
             if (src.startsWith('blob:')) {
               setViewerHint(
-                `Could not load upload (${uploadFileName ?? 'file'}): ${msg}. Try Use project default or a Blender-exported GLB.`,
+                `Could not load upload (${uploadFileName ?? 'file'}): ${msg}. Try Reset to default teeth model.`,
               )
               return
             }
-            if (src === bundledModel) {
+            if (src === DEFAULT_JAW_GLB_URL) {
               setViewerHint(
-                `Bundled tooth model failed (${msg}). Trying online fallback model. Check that public/models/single_tooth.glb exists.`,
+                `3D model failed (${msg}). Run npm run import-teeth-zip or check src/assets/models/free_teeth_base_mesh.glb.`,
               )
-              setSrc(FALLBACK_GLb)
-              setViewerKey((k) => k + 1)
               return
             }
-            setViewerHint(`Load error: ${msg}`)
+            setViewerHint(`3D load error: ${msg}`)
           }}
         />
       </div>
@@ -224,12 +232,12 @@ export function Models3D() {
       <section className="card prose">
         <h3>How to use</h3>
         <ul>
-          <li>Switch scenarios to compare cystic versus tumor-style expansion patterns in 3D.</li>
-          <li>Drag to orbit, scroll / pinch to zoom. Overlays rescale to the loaded mesh bounds.</li>
           <li>
-            Demo-only meshes live in <code>{TOOTH_DEMO_GALLERY_FOLDER}</code> — use gallery buttons or
-            Choose file during a presentation.
+            <strong>Drag</strong> the 3D model to move it left, right, up, or down. <strong>Right-drag</strong>{' '}
+            to rotate. <strong>Scroll</strong> to zoom.
           </li>
+          <li>Pick a model name in the gallery to switch meshes.</li>
+          <li>Switch pathology scenarios to compare cystic versus tumor-style expansion in 3D.</li>
         </ul>
       </section>
     </div>

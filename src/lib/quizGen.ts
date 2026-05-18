@@ -65,7 +65,7 @@ export function generateQuizFromText(
 
     return {
       id: uuidv4(),
-      prompt: 'Which statement is supported by the uploaded teaching material?',
+      prompt: 'According to the lecture material, which statement is correct?',
       options,
       correctOptionId,
     }

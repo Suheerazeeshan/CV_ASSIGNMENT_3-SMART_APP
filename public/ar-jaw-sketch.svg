@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="ar-jaw-title">
+  <title id="ar-jaw-title">Printable dental jaw sketch for AR preparation lab</title>
+  <rect width="400" height="300" fill="#ffffff" />
+  <text x="200" y="28" text-anchor="middle" fill="#0f172a" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600">
+    Dental jaw sketch - AR alignment marker
+  </text>
+  <text x="200" y="48" text-anchor="middle" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="11">
+    Print at full page width. Align this outline with the on-screen overlay in AR prep.
+  </text>
+
+  <path
+    d="M70 175 Q200 70 330 175 Q200 235 70 175 Z"
+    fill="#f8fafc"
+    stroke="#0f172a"
+    stroke-width="2.5"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M95 168 Q200 95 305 168"
+    fill="none"
+    stroke="#64748b"
+    stroke-width="1.5"
+    stroke-dasharray="5 4"
+  />
+
+  <g fill="#ffffff" stroke="#0f172a" stroke-width="1.2">
+    <rect x="108" y="118" width="18" height="24" rx="3" />
+    <rect x="130" y="112" width="18" height="28" rx="3" />
+    <rect x="152" y="108" width="18" height="30" rx="3" />
+    <rect x="174" y="106" width="18" height="31" rx="3" />
+    <rect x="196" y="105" width="18" height="32" rx="3" />
+    <rect x="218" y="106" width="18" height="31" rx="3" />
+    <rect x="240" y="108" width="18" height="30" rx="3" />
+    <rect x="262" y="112" width="18" height="28" rx="3" />
+    <rect x="284" y="118" width="18" height="24" rx="3" />
+  </g>
+
+  <ellipse cx="145" cy="132" rx="42" ry="28" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="6 4" />
+  <text x="145" y="98" text-anchor="middle" fill="#0369a1" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600">
+    Lesion watch zone
+  </text>
+
+  <ellipse cx="268" cy="148" rx="34" ry="24" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="6 4" />
+  <text x="268" y="188" text-anchor="middle" fill="#a16207" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600">
+    Impacted crown area
+  </text>
+
+  <circle cx="200" cy="250" r="4" fill="#0f172a" />
+  <text x="200" y="270" text-anchor="middle" fill="#64748b" font-family="Segoe UI, Arial, sans-serif" font-size="10">
+    Center marker
+  </text>
+</svg>

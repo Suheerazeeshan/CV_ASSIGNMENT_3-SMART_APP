@@ -1,76 +1,88 @@
 /**
- * Generates public/sample-odontogenic-lecture.pdf for testing Upload PDF → quiz.
- * Run: node scripts/generate-sample-pdf.mjs
+ * Build sample lecture PDF(s) from public/sample-lectures/lecture-content.json
+ * Edit that JSON to choose the text used for quiz generation, then run:
+ *   npm run sample-pdf
  */
-import { writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
+const root = join(__dirname, '..')
+const contentPath = join(root, 'public', 'sample-lectures', 'lecture-content.json')
 
-const paragraphs = [
-  `Odontogenic cysts are epithelial-lined cavities derived from remnants of the tooth-forming apparatus and represent a core topic in oral pathology education.`,
-  `Radicular cysts typically arise from inflammatory stimulation at the apex of a non-vital tooth and are among the most frequently encountered jaw cysts in clinical practice.`,
-  `Dentigerous cysts envelop the crown of an unerupted tooth and are considered developmental lesions associated with impacted teeth rather than purely inflammatory processes.`,
-  `The odontogenic keratocyst may behave aggressively with higher recurrence risk compared with many other cystic lesions, prompting vigilant radiographic follow-up after surgical treatment.`,
-  `Ameloblastoma is the most common benign odontogenic epithelial tumor and often presents as a slowly expansile radiolucency favoring the posterior mandible on panoramic imaging.`,
-  `Clinical correlation among patient age, tooth vitality testing, radiographic borders, and eventual histopathology remains essential when distinguishing inflammatory cysts from keratocystic odontogenic lesions.`,
-  `Myxoma and odontogenic fibroma illustrate mesenchymal odontogenic tumors that require careful imaging assessment because local infiltration can challenge conservative surgical planning.`,
-  `Students preparing for boards should practice articulating why inflammatory radicular disease differs from developmental dentigerous pathology despite overlapping jaw radiolucencies.`,
-]
-
-async function main() {
-  const pdf = await PDFDocument.create()
-  const font = await pdf.embedFont(StandardFonts.TimesRoman)
-  const size = 11
-  const lineHeight = size * 1.35
-  let page = pdf.addPage([595.28, 841.89])
-  const margin = 56
-  let x = margin
-  let y = page.getHeight() - margin
-
-  page.drawText('Sample lecture: Odontogenic oral pathology', {
-    x,
-    y,
-    size: size + 4,
-    font,
-    color: rgb(0.1, 0.1, 0.15),
-  })
-  y -= lineHeight * 2
-
-  for (const p of paragraphs) {
-    const words = p.split(/\s+/)
-    let line = ''
-    for (const w of words) {
-      const next = line ? `${line} ${w}` : w
-      const width = font.widthOfTextAtSize(next, size)
-      if (width > page.getWidth() - margin * 2 && line) {
-        if (y < margin + lineHeight * 3) {
-          page = pdf.addPage([595.28, 841.89])
-          y = page.getHeight() - margin
-        }
-        page.drawText(line, { x, y, size, font, color: rgb(0.15, 0.15, 0.2) })
-        y -= lineHeight
-        line = w
-      } else {
-        line = next
-      }
-    }
-    if (line) {
-      if (y < margin + lineHeight * 3) {
-        page = pdf.addPage([595.28, 841.89])
-        y = page.getHeight() - margin
-      }
-      page.drawText(line, { x, y, size, font, color: rgb(0.15, 0.15, 0.2) })
-      y -= lineHeight * 1.6
+function wrapLine(font, text, size, maxWidth) {
+  const words = text.split(/\s+/)
+  const lines = []
+  let line = ''
+  for (const w of words) {
+    const next = line ? `${line} ${w}` : w
+    if (font.widthOfTextAtSize(next, size) > maxWidth && line) {
+      lines.push(line)
+      line = w
+    } else {
+      line = next
     }
   }
+  if (line) lines.push(line)
+  return lines
+}
 
-  const bytes = await pdf.save()
-  const out = join(__dirname, '..', 'public', 'sample-odontogenic-lecture.pdf')
-  writeFileSync(out, bytes)
-  console.log('Wrote', out)
+async function buildPdf({ title, subtitle, paragraphs }) {
+  const pdf = await PDFDocument.create()
+  const font = await pdf.embedFont(StandardFonts.TimesRoman)
+  const bold = await pdf.embedFont(StandardFonts.TimesRomanBold)
+  const bodySize = 11
+  const lineHeight = bodySize * 1.4
+  const margin = 56
+  const pageSize = [595.28, 841.89]
+  let page = pdf.addPage(pageSize)
+  let y = page.getHeight() - margin
+  const maxWidth = page.getWidth() - margin * 2
+
+  page.drawText(title, { x: margin, y, size: 16, font: bold, color: rgb(0.08, 0.1, 0.15) })
+  y -= lineHeight * 1.8
+  if (subtitle) {
+    for (const line of wrapLine(font, subtitle, 10, maxWidth)) {
+      page.drawText(line, { x: margin, y, size: 10, font, color: rgb(0.35, 0.38, 0.45) })
+      y -= lineHeight
+    }
+    y -= lineHeight * 0.6
+  }
+
+  for (const p of paragraphs) {
+    const lines = wrapLine(font, p, bodySize, maxWidth)
+    for (const line of lines) {
+      if (y < margin + lineHeight * 2) {
+        page = pdf.addPage(pageSize)
+        y = page.getHeight() - margin
+      }
+      page.drawText(line, { x: margin, y, size: bodySize, font, color: rgb(0.12, 0.14, 0.18) })
+      y -= lineHeight
+    }
+    y -= lineHeight * 0.5
+  }
+
+  return pdf.save()
+}
+
+async function main() {
+  const content = JSON.parse(readFileSync(contentPath, 'utf8'))
+  const bytes = await buildPdf(content)
+
+  const outDir = join(root, 'public', 'sample-lectures')
+  mkdirSync(outDir, { recursive: true })
+
+  const primary = join(outDir, 'odontogenic-oral-pathology-lecture.pdf')
+  const legacy = join(root, 'public', 'sample-odontogenic-lecture.pdf')
+
+  writeFileSync(primary, bytes)
+  writeFileSync(legacy, bytes)
+
+  console.log('Wrote', primary)
+  console.log('Wrote', legacy)
+  console.log('\nEdit public/sample-lectures/lecture-content.json then run npm run sample-pdf to rebuild.')
 }
 
 main().catch((e) => {

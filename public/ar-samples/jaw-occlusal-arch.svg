@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img">
+  <rect width="800" height="500" fill="#0c4a6e" />
+  <text x="400" y="40" text-anchor="middle" fill="#bae6fd" font-family="Segoe UI, Arial, sans-serif" font-size="16">
+    Occlusal arch reference - match tooth row to overlay
+  </text>
+  <ellipse cx="400" cy="280" rx="280" ry="130" fill="#fecdd3" stroke="#fda4af" stroke-width="4" />
+  <ellipse cx="400" cy="270" rx="220" ry="90" fill="#1e3a5f" />
+  <g fill="#e2e8f0">
+    <ellipse cx="220" cy="268" rx="22" ry="28" />
+    <ellipse cx="270" cy="248" rx="24" ry="30" />
+    <ellipse cx="325" cy="238" rx="26" ry="32" />
+    <ellipse cx="385" cy="234" rx="28" ry="34" />
+    <ellipse cx="445" cy="234" rx="28" ry="34" />
+    <ellipse cx="505" cy="238" rx="26" ry="32" />
+    <ellipse cx="560" cy="248" rx="24" ry="30" />
+    <ellipse cx="610" cy="268" rx="22" ry="28" />
+  </g>
+  <circle cx="400" cy="280" r="18" fill="#38bdf8" opacity="0.35" />
+  <path d="M120 280 Q400 120 680 280" fill="none" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="8 6" opacity="0.7" />
+</svg>

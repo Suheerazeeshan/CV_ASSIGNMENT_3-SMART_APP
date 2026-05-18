@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img">
+  <rect width="800" height="500" fill="#18181b" />
+  <text x="400" y="40" text-anchor="middle" fill="#a1a1aa" font-family="Segoe UI, Arial, sans-serif" font-size="16">
+    Alveolar ridge model - center marker alignment
+  </text>
+  <path
+    d="M160 310 Q400 180 640 310 L600 360 Q400 400 200 360 Z"
+    fill="#d4a574"
+    stroke="#a16207"
+    stroke-width="3"
+  />
+  <path d="M200 300 Q400 220 600 300" fill="none" stroke="#78350f" stroke-width="2" opacity="0.6" />
+  <g stroke="#78716c" stroke-width="3" opacity="0.5">
+    <line x1="250" y1="285" x2="270" y2="265" />
+    <line x1="310" y1="268" x2="320" y2="245" />
+    <line x1="380" y1="258" x2="385" y2="235" />
+    <line x1="450" y1="258" x2="455" y2="235" />
+    <line x1="520" y1="268" x2="530" y2="245" />
+    <line x1="580" y1="285" x2="600" y2="265" />
+  </g>
+  <circle cx="400" cy="330" r="10" fill="#38bdf8" />
+  <circle cx="400" cy="330" r="24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 4" />
+</svg>

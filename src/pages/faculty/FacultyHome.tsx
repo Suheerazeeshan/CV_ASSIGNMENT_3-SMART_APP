@@ -1,47 +1,81 @@
-import { Link } from 'react-router-dom'
+import { FeatureTile } from '../../components/FeatureTile'
 
 export function FacultyHome() {
   return (
-    <div className="page">
-      <h2>Faculty dashboard</h2>
-      <p className="lead">
-        Aligns with faculty responsibilities in the course model: ingest teaching materials (PDF →
-        items), create and manage tests, view reports on student attempts—all locally for this
-        prototype (Firebase-style persistence would replace localStorage in production).
-      </p>
+    <div className="page page-home">
+      <header className="page-hero page-hero--faculty">
+        <div className="page-hero-content">
+          <span className="hero-badge">Faculty workspace</span>
+          <h2>Faculty dashboard</h2>
+          <p className="lead">
+            Upload teaching materials, auto-build quizzes, review solutions, and track student
+            performance—all from one dashboard.
+          </p>
+        </div>
+      </header>
+
+      <h3 className="section-heading">Curriculum & assessment</h3>
       <div className="grid-cards">
-        <Link className="card tile" to="/app/faculty/upload">
-          <h3>Upload PDF</h3>
-          <p className="muted">Extract text locally and auto-build MCQs.</p>
-        </Link>
-        <Link className="card tile" to="/app/faculty/quizzes">
-          <h3>Quizzes & solutions</h3>
-          <p className="muted">View items and official answer key.</p>
-        </Link>
-        <Link className="card tile" to="/app/faculty/reports">
-          <h3>Performance reports</h3>
-          <p className="muted">Scores and attempts per quiz.</p>
-        </Link>
-        <Link className="card tile" to="/app/chat">
-          <h3>Chatbot</h3>
-          <p className="muted">Explain app workflows to learners.</p>
-        </Link>
-        <Link className="card tile" to="/app/student">
-          <h3>Preview student hub</h3>
-          <p className="muted">See quizzes and prep tools as learners do.</p>
-        </Link>
-        <Link className="card tile" to="/app/student/lectures">
-          <h3>Sample lectures</h3>
-          <p className="muted">Review built-in lecture content students can read.</p>
-        </Link>
-        <Link className="card tile" to="/app/bookmarks">
-          <h3>Bookmarks</h3>
-          <p className="muted">Pin syllabus PDF routes or quiz keys.</p>
-        </Link>
-        <Link className="card tile" to="/app/notes">
-          <h3>Notes</h3>
-          <p className="muted">Faculty scratchpad for cohort reminders.</p>
-        </Link>
+        <FeatureTile
+          to="/app/faculty/upload"
+          icon="📄"
+          title="PDF → Quiz generator"
+          description="Upload a lecture PDF; instant or AI multiple-choice quiz."
+          accent="indigo"
+        />
+        <FeatureTile
+          to="/app/faculty/quizzes"
+          icon="📋"
+          title="Quizzes & solutions"
+          description="View items and official answer key."
+          accent="teal"
+        />
+        <FeatureTile
+          to="/app/faculty/reports"
+          icon="📈"
+          title="Performance reports"
+          description="Scores and attempts per quiz."
+          accent="amber"
+        />
+      </div>
+
+      <h3 className="section-heading">Tools & preview</h3>
+      <div className="grid-cards">
+        <FeatureTile
+          to="/app/chat"
+          icon="💬"
+          title="Chatbot"
+          description="Explain app workflows to learners."
+          accent="violet"
+        />
+        <FeatureTile
+          to="/app/student"
+          icon="👀"
+          title="Preview student hub"
+          description="See quizzes and prep tools as learners do."
+          accent="sky"
+        />
+        <FeatureTile
+          to="/app/student/lectures"
+          icon="🎓"
+          title="Sample lectures"
+          description="Review built-in lecture content students can read."
+          accent="indigo"
+        />
+        <FeatureTile
+          to="/app/bookmarks"
+          icon="🔖"
+          title="Bookmarks"
+          description="Pin syllabus PDF routes or quiz keys."
+          accent="rose"
+        />
+        <FeatureTile
+          to="/app/notes"
+          icon="📓"
+          title="Notes"
+          description="Faculty scratchpad for cohort reminders."
+          accent="emerald"
+        />
       </div>
     </div>
   )

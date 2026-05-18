@@ -157,7 +157,7 @@ const buf = Buffer.from(buffer)
 
 const modelsDir = join(__dirname, '..', 'public', 'models')
 const outputs = [
-  'realistic_tooth_jaw.glb',
+  'single_tooth.glb',
   'tooth.glb',
   'manual-upload-sample-tooth.glb',
 ]

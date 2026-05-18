@@ -22,11 +22,11 @@ export type Pathology3DCase = {
 export const PATHOLOGY_3D_CASES: Pathology3DCase[] = [
   {
     id: 'healthy',
-    name: 'Healthy tooth reference',
+    name: 'Healthy jaw reference',
     category: 'reference',
     summary:
-      'Baseline crown, root, and cervical anatomy without a pathologic cavity or cortical expansion.',
-    imagingCue: 'Use this view to compare crown height, root taper, and cervical contour before overlays.',
+      'Baseline mandible anatomy without pathologic radiolucency or cortical expansion overlays.',
+    imagingCue: 'Orbit the full jaw model and note tooth rows, ridge, and ramus before adding markers.',
     markers: [],
   },
   {

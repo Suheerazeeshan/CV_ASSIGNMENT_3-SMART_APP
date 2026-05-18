@@ -25,51 +25,62 @@ export function Login() {
 
   return (
     <div className="login-page">
-      <div className="card login-card">
-        <h1>Interactive Oral Pathology Education</h1>
-        <p className="muted">
-          LMS-style roles (student / faculty): learning content, quizzes, and progress stay in this
-          browser—similar to the chapter / topic / test workflow in your course design. Sign in with
-          your display name and password.
-        </p>
-        <form onSubmit={onSubmit} className="stack">
-          <label className="field">
-            <span>Role</span>
-            <select value={role} onChange={(e) => setRole(e.target.value as Role)}>
-              <option value="student">Student</option>
-              <option value="faculty">Faculty</option>
-            </select>
-          </label>
-          <label className="field">
-            <span>Display name</span>
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder={role === 'faculty' ? 'Dr. Example' : 'Your name'}
-              autoComplete="name"
-            />
-          </label>
-          <label className="field">
-            <span>Password</span>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Class or demo password"
-              autoComplete="current-password"
-            />
-          </label>
-          {error && <p className="small" style={{ color: 'var(--danger)', margin: 0 }}>{error}</p>}
-          <button type="submit" className="btn primary">
-            Log in
-          </button>
-        </form>
-        <p className="small muted">{demoPasswordHint()}</p>
-        <p className="small muted">
-          Demo data stays in this browser (localStorage). No server is required for PDF parsing or
-          quizzes. A production system would send credentials to Firebase or another backend;
-          here, password checks run only in the browser for the assignment prototype.
-        </p>
+      <div className="login-shell">
+        <aside className="login-hero" aria-hidden="false">
+          <div className="login-hero-content">
+            <div className="login-hero-icon" aria-hidden>
+              🦷
+            </div>
+            <h1>Interactive Oral Pathology Education</h1>
+            <p>
+              Learn odontogenic pathology with quizzes, 3D models, computer vision labs, and
+              AR-style preparation—all in one beautiful study hub.
+            </p>
+            <ul className="login-feature-list">
+              <li>Faculty PDF → auto-generated quizzes</li>
+              <li>Student labs: CV, 3D, AR & image drills</li>
+              <li>Bookmarks, notes & offline chatbot</li>
+            </ul>
+          </div>
+        </aside>
+
+        <div className="card login-card">
+          <h2>Welcome back</h2>
+          <p className="login-sub">Sign in with your role, display name, and class password.</p>
+          <form onSubmit={onSubmit} className="stack">
+            <label className="field">
+              <span>Role</span>
+              <select value={role} onChange={(e) => setRole(e.target.value as Role)}>
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+              </select>
+            </label>
+            <label className="field">
+              <span>Display name</span>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder={role === 'faculty' ? 'Dr. Example' : 'Your name'}
+                autoComplete="name"
+              />
+            </label>
+            <label className="field">
+              <span>Password</span>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Class or demo password"
+                autoComplete="current-password"
+              />
+            </label>
+            {error && <p className="error small">{error}</p>}
+            <button type="submit" className="btn primary">
+              Log in
+            </button>
+          </form>
+          <p className="small muted">{demoPasswordHint()}</p>
+        </div>
       </div>
     </div>
   )

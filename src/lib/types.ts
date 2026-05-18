@@ -22,7 +22,10 @@ export interface QuizQuestion {
 export interface Quiz {
   id: string
   title: string
+  /** Original lecture PDF filename when faculty uploaded. */
   sourcePdfName?: string
+  /** Extracted lecture text used to generate questions (faculty PDF uploads). */
+  lectureText?: string
   questions: QuizQuestion[]
   createdAt: string
 }

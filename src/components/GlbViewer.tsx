@@ -12,8 +12,30 @@ type Props = {
   onError?: (message: string) => void
 }
 
+function enhanceMaterials(root: THREE.Object3D) {
+  root.traverse((child) => {
+    if (!(child instanceof THREE.Mesh)) return
+    child.castShadow = true
+    child.receiveShadow = true
+    const materials = Array.isArray(child.material) ? child.material : [child.material]
+    for (const mat of materials) {
+      if (!mat) continue
+      if ('map' in mat && mat.map instanceof THREE.Texture) {
+        mat.map.colorSpace = THREE.SRGBColorSpace
+      }
+      if ('emissiveMap' in mat && mat.emissiveMap instanceof THREE.Texture) {
+        mat.emissiveMap.colorSpace = THREE.SRGBColorSpace
+      }
+      if (mat instanceof THREE.MeshStandardMaterial || mat instanceof THREE.MeshPhysicalMaterial) {
+        mat.side = THREE.DoubleSide
+        mat.needsUpdate = true
+      }
+    }
+  })
+}
+
 /**
- * Reliable GLB preview using Three.js (avoids <model-viewer> blank-canvas issues on some setups).
+ * GLB preview using Three.js with lighting tuned for full-color anatomical meshes.
  */
 export function GlbViewer({ url, markers = [], onLoad, onError }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -30,30 +52,64 @@ export function GlbViewer({ url, markers = [], onLoad, onError }: Props) {
     if (!container || !url) return
 
     const width = Math.max(container.clientWidth, 320)
-    const height = Math.max(container.clientHeight, 400)
+    const height = Math.max(container.clientHeight, 480)
 
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color(0x1e293b)
+    scene.background = new THREE.Color(0x0f172a)
 
-    const camera = new THREE.PerspectiveCamera(42, width / height, 0.001, 5000)
-    const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' })
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.001, 5000)
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance',
+    })
     renderer.setSize(width, height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.outputColorSpace = THREE.SRGBColorSpace
+    renderer.toneMapping = THREE.ACESFilmicToneMapping
+    renderer.toneMappingExposure = 1.15
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
     container.appendChild(renderer.domElement)
 
-    const hemi = new THREE.HemisphereLight(0xffffff, 0x334155, 1.15)
+    const ambient = new THREE.AmbientLight(0xffffff, 0.55)
+    scene.add(ambient)
+
+    const hemi = new THREE.HemisphereLight(0xf0f9ff, 0x44403c, 0.85)
     scene.add(hemi)
-    const key = new THREE.DirectionalLight(0xffffff, 1.35)
-    key.position.set(4, 9, 6)
+
+    const key = new THREE.DirectionalLight(0xffffff, 1.5)
+    key.position.set(6, 10, 8)
+    key.castShadow = true
     scene.add(key)
-    const fill = new THREE.DirectionalLight(0xf8fafc, 0.55)
-    fill.position.set(-5, 2, 4)
+
+    const fill = new THREE.DirectionalLight(0xe2e8f0, 0.65)
+    fill.position.set(-8, 4, 6)
     scene.add(fill)
+
+    const rim = new THREE.DirectionalLight(0x7dd3fc, 0.45)
+    rim.position.set(0, 2, -10)
+    scene.add(rim)
 
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.enableDamping = true
     controls.dampingFactor = 0.06
+    controls.enablePan = true
+    controls.screenSpacePanning = true
+    controls.panSpeed = 1.25
+    controls.rotateSpeed = 0.85
+    controls.minDistance = 0.01
+    controls.maxDistance = 500
+    // Left drag = move model left/right (pan); right drag = rotate; scroll = zoom
+    controls.mouseButtons = {
+      LEFT: THREE.MOUSE.PAN,
+      MIDDLE: THREE.MOUSE.DOLLY,
+      RIGHT: THREE.MOUSE.ROTATE,
+    }
+    controls.touches = {
+      ONE: THREE.TOUCH.PAN,
+      TWO: THREE.TOUCH.DOLLY_ROTATE,
+    }
 
     let raf = 0
     let disposed = false
@@ -103,6 +159,7 @@ export function GlbViewer({ url, markers = [], onLoad, onError }: Props) {
       url,
       (gltf) => {
         if (disposed) return
+        enhanceMaterials(gltf.scene)
         scene.add(gltf.scene)
         addPathologyOverlays(gltf.scene, markers)
 
@@ -110,14 +167,16 @@ export function GlbViewer({ url, markers = [], onLoad, onError }: Props) {
         const size = box.getSize(new THREE.Vector3())
         const center = box.getCenter(new THREE.Vector3())
         const maxDim = Math.max(size.x, size.y, size.z, 1e-6)
-        const dist = maxDim * 2.4
+        const dist = maxDim * 2.2
 
-        camera.position.set(center.x + dist * 0.55, center.y + dist * 0.35, center.z + dist * 0.55)
-        camera.near = maxDim / 100
+        camera.position.set(center.x + dist * 0.5, center.y + dist * 0.28, center.z + dist * 0.65)
+        camera.near = maxDim / 200
         camera.far = maxDim * 100
         camera.updateProjectionMatrix()
 
         controls.target.copy(center)
+        controls.minDistance = maxDim * 0.35
+        controls.maxDistance = maxDim * 6
         controls.update()
 
         animate()
@@ -134,7 +193,7 @@ export function GlbViewer({ url, markers = [], onLoad, onError }: Props) {
     const ro = new ResizeObserver(() => {
       if (!container || disposed) return
       const w = Math.max(container.clientWidth, 320)
-      const h = Math.max(container.clientHeight, 400)
+      const h = Math.max(container.clientHeight, 480)
       camera.aspect = w / h
       camera.updateProjectionMatrix()
       renderer.setSize(w, h)
@@ -155,5 +214,12 @@ export function GlbViewer({ url, markers = [], onLoad, onError }: Props) {
     }
   }, [url, markers])
 
-  return <div ref={containerRef} className="glb-three-viewer" aria-label="3D model canvas" />
+  return (
+    <div
+      ref={containerRef}
+      className="glb-three-viewer"
+      aria-label="3D model canvas — drag to move, right-drag to rotate, scroll to zoom"
+    />
+  )
 }
+

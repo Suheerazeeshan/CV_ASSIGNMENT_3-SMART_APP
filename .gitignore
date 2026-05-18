@@ -15,6 +15,15 @@ dist
 dist-ssr
 *.local
 
+# Large Sketchfab extracts (use demo-gallery / src/assets GLB instead)
+public/models/sketchfab-import/mnr_dental_scan/
+public/models/sketchfab-import/**/extracted/
+public/models/sketchfab-import/**/_extract/
+
+# Word / Office temp files
+docs/~$*
+docs/~WRL*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
