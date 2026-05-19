@@ -41,7 +41,8 @@ export async function generateGeminiContent(body: Record<string, unknown>): Prom
     return {
       ok: false,
       message:
-        'No API key in this build. Create oral-pathology-edu/.env with VITE_GEMINI_API_KEY=… then stop and run npm run dev again (Vite only reads .env at startup).',
+        'No API key in this build. Local: add VITE_GEMINI_API_KEY to .env and restart npm run dev. ' +
+        'Netlify/hosting: set VITE_GEMINI_API_KEY under Site configuration → Environment variables (scope: Builds), then Trigger deploy → Clear cache and deploy.',
     }
   }
 

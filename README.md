@@ -60,7 +60,9 @@ npm run build
 
 Then [app.netlify.com](https://app.netlify.com) → **Add new site** → **Deploy manually** → drag the **`dist`** folder.
 
-**GitHub auto-deploy:** connect repo `CV_ASSIGNMENT_3-SMART_APP` — Netlify reads `netlify.toml` (build `npm run build`, publish `dist`). Optional env: `VITE_GEMINI_API_KEY`, `VITE_LOGIN_PASSWORD`.
+**GitHub auto-deploy:** connect repo `CV_ASSIGNMENT_3-SMART_APP` — Netlify reads `netlify.toml` (build `npm run build`, publish `dist`).
+
+**Gemini on Netlify (required for AI features):** Site configuration → **Environment variables** → add `VITE_GEMINI_API_KEY` → enable scope **Builds** → **Deploys** → **Trigger deploy** → **Clear cache and deploy site**. Vite embeds `VITE_*` only at build time; changing the key without redeploying leaves the old (empty) build live.
 
 SPA routing uses `public/_redirects` (copied into `dist` on build).
 

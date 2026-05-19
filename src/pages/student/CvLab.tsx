@@ -168,9 +168,9 @@ export function CvLab() {
             <strong>loaded</strong>
           ) : (
             <>
-              <strong>missing</strong> — add <code>VITE_GEMINI_API_KEY</code> to{' '}
-              <code>oral-pathology-edu/.env</code> and restart <code>npm run dev</code> from that
-              folder.
+              <strong>missing</strong> — local: <code>.env</code> + restart <code>npm run dev</code>.
+              Live site: add <code>VITE_GEMINI_API_KEY</code> in Netlify env vars (Build scope), then
+              redeploy with cache clear.
             </>
           )}
         </p>
