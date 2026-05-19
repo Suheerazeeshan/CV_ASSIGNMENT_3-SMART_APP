@@ -21,6 +21,16 @@ Open the URL shown (usually `http://localhost:5173`). **Log in** with **role**, 
 
 A ready-to-upload lecture extract is at **`public/sample-odontogenic-lecture.pdf`**. In File Explorer go to your project’s `oral-pathology-edu\public\` folder and select that file on **Upload PDF**. Regenerate it anytime with `npm run sample-pdf`.
 
+## Presentation script (Word)
+
+Generate a demo narration + project explanation document:
+
+```bash
+npm run presentation-docx
+```
+
+Output: `docs/Project-Presentation-Script.docx`
+
 ## User guide
 
 The in-app **User guide** lists workflow steps and named topic tiles (no screenshot files required).
@@ -39,6 +49,20 @@ npm run preview
 ```
 
 `vite.config.ts` uses `base: './'` so assets resolve correctly on mobile wrappers and static hosts.
+
+## Deploy on Netlify (recommended if Vercel fails)
+
+**Drag-and-drop (fastest):**
+
+```bash
+npm run build
+```
+
+Then [app.netlify.com](https://app.netlify.com) → **Add new site** → **Deploy manually** → drag the **`dist`** folder.
+
+**GitHub auto-deploy:** connect repo `CV_ASSIGNMENT_3-SMART_APP` — Netlify reads `netlify.toml` (build `npm run build`, publish `dist`). Optional env: `VITE_GEMINI_API_KEY`, `VITE_LOGIN_PASSWORD`.
+
+SPA routing uses `public/_redirects` (copied into `dist` on build).
 
 ## Android (Capacitor)
 
