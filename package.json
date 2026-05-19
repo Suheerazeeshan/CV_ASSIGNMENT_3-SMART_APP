@@ -2,6 +2,9 @@
   "name": "oral-pathology-edu",
   "private": true,
   "version": "0.0.0",
+  "engines": {
+    "node": "20.x"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,6 +16,7 @@
     "cap:android": "npm run cap:sync && npx cap open android",
     "sample-pdf": "node scripts/generate-sample-pdf.mjs",
     "prompts-docx": "node scripts/generate-prompts-docx.mjs",
+    "presentation-docx": "node scripts/generate-presentation-docx.mjs",
     "generate-tooth-glb": "node scripts/create-tooth-glb.mjs",
     "generate-anatomy-jaw-glb": "node scripts/create-anatomy-jaw-glb.mjs",
     "import-sketchfab-glb": "node scripts/import-sketchfab-glb.mjs",
